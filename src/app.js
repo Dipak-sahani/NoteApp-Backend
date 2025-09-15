@@ -8,11 +8,26 @@ const app = express()
 const server = createServer(app);
 
 
-app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true
-}))
+const allowedOrigins = [                 // your frontend prod URL e.g. https://myapp.vercel.app
+  "http://localhost:5173",                  // local dev (vite default)
+  "http://localhost:3000"                   // local dev (CRA default, if needed)
+];
 
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps, curl, Postman)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
 app.use(express.static("public"))
