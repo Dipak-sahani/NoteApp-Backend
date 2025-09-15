@@ -49,16 +49,19 @@ const createUserAccount = asyncHandler(async (req,res)=>{
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({ companyName:req.user.companyName }).select("-password -refreshToken");
-    console.log("yes");
     
-    return res.status(200).json(
-      users
-    );
+    const users = await User.find({ tenant: req.user.tenant })
+      .select("-password -refreshToken");
+
+    console.log("yes");
+
+    return res.status(200).json(users);
   } catch (error) {
-    res.status(500).error(error)
+    
+    return res.status(500).json({ message: error.message });
   }
 };
+
 
 // READ - Get single user by ID
 const getUserById = asyncHandler(async (req, res) => {
