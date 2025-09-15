@@ -9,7 +9,7 @@ const server = createServer(app);
 
 
 const allowedOrigins = [ 
-    "https://notes-app-frontend-henna.vercel.app/",                // your frontend prod URL e.g. https://myapp.vercel.app
+    "notes-app-frontend-l6m9-dj82j1q3b-dipak-sahanis-projects.vercel.app",                // your frontend prod URL e.g. https://myapp.vercel.app
   "http://localhost:5173",                  // local dev (vite default)
   "http://localhost:3000"                   // local dev (CRA default, if needed)
 ];
