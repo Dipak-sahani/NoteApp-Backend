@@ -8,7 +8,7 @@ const app = express()
 const server = createServer(app);
 
 const allowedOrigins = [ 
-  "https://notes-app-frontend-ryeq.vercel.app/", // prod frontend (with https!)
+  "https://notes-app-frontend-ryeq.vercel.app", // prod frontend (with https!)
   "http://localhost:5173",   // local dev (Vite default)
   "https://notes-app-frontend-ryeq-git-main-dipak-sahanis-projects.vercel.app"    // local dev (CRA default, if needed)
 ];
